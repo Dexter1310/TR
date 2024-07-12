@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Example with Animations</title>
+    <!-- jQuery CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        $(document).ready(function() {
+
+            $("#animateButton").click(function() {
+                $("#myBox").animate({
+                    width: "200px",
+                    height: "200px",
+                    marginLeft: "50px"
+                }, 1000, function() {
+                    // Animation complete.
+                    $("#myBox").css("background-color", "red");
+                });
+            });
+
+            $('#localization').click(function (){
+                getLocation();
+            })
+
+            function getLocation() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition);
+                } else {
+                    alert("Geolocalización no es soportada por este navegador.");
+                }
+            }
+
+            function showPosition(position) {
+                let lat = position.coords.latitude;
+                let lon = position.coords.longitude;
+
+                console.log(lat,lon)
+                // sendLocationToServer(lat, lon);
+            }
+
+
+        });
+    </script>
+</head>
+<body>
+<h1>jQuery Animations</h1>
+<button id="animateButton">Animate Box</button>
+<button id="localization"> localiza</button>
+<div class="box" id="myBox"></div>
+
+
+</body>
+</html>
